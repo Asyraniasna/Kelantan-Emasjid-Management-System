@@ -8,7 +8,7 @@
          <meta name="viewport" content="width=device-width, initial-scale=1">
          <meta name="viewport" content="initial-scale=1, maximum-scale=1">
          <!-- site metas -->
-         <title>Zakat Application Form</title>
+         <title>Kelantan E-Masjid Management System</title>
          <style>
             body {
                 font-family: Arial, sans-serif;
@@ -33,18 +33,19 @@
                 box-sizing: border-box;
             }
 
-            button {
-                background-color: #3498db;
-                color: white;
-                padding: 12px 20px;
-                border: 2px solid #2980b9; /* Fixed border size */
-                border-radius: 4px;
-                cursor: pointer;
-                font-size: 16px;
+            .button-custom {
+               border: 1px solid #000;
+               padding: 5px;
+               border-radius: 10px;
+               background-color: #f0f0f0;
+               color: #000;
+               transition: background-color 0.3s, color 0.3s; /* Add smooth transition effect */
+
             }
 
-            button:hover {
-                background-color: #2980b9;
+            .button-custom:hover {
+               background-color: #000; /* Change to the desired hover background color */
+               color: #f0f0f0; /* Change to the desired hover text color */
             }
          </style>
          <meta name="keywords" content="">
@@ -126,60 +127,38 @@
             </div>
          </div>
          <!-- end header inner -->
-         <!-- zakat -->
-         <div class="statistic-container">
-               <br><h1 class="text_align_center">KELANTAN E-MASJID MANAGEMENT SYSTEM</h1>
-               <h2 class="text_align_center">Services</h2>
-               <div class="container">
-                  <a href="services.html">Back</a>
-                  <h2>Zakat Application Form</h2>
-                  <form action="process_zakat_application.php" method="post">               
-                    <label for="full_name">Full Name:</label>
-                    <input type="text" id="full_name" name="full_name" required>
-                
-                    <label for="ic">IC:</label>
-                    <input type="text" id="ic" name="ic" required>
-                
-                    <label for="phone">Phone Number:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                
-                    <label for="address">Address:</label>
-                    <textarea id="address" name="address" rows="4"></textarea>
-                
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
-
-                    <label for="income">Income (RM):</label>
-                    <input type="income" id="income" name="income" required>
-
-                    <label for="bank">Select Bank:</label>
-                    <select id="bank" name="bank" required>
-                        <option value="alliance_bank">Alliance Bank Malaysia Berhad</option>
-                        <option value="ambank">AmBank</option>
-                        <option value="bank_islam">Bank Islam Malaysia</option>
-                        <option value="bank_rakyat">Bank Rakyat</option>
-                        <option value="bsn">Bank Simpanan Nasional (BSN)</option>
-                        <option value="cimb">CIMB Group Holdings</option>
-                        <option value="hsbc">HSBC Bank Malaysia</option>
-                        <option value="hong_leong">Hong Leong Bank</option>
-                        <option value="maybank">Maybank</option>
-                        <option value="public_bank">Public Bank Berhad</option>
-                        <option value="rhb">RHB Bank</option>
-                    </select>
-
-                    <label for="accountnum">Account Number:</label>
-                    <input type="accountnum" id="accountnum" name="accountnum" required>
-                
-                    <label for="additional_notes">Additional Notes:</label>
-                    <textarea id="additional_notes" name="additional_notes" rows="4"></textarea>
-                
-                    <button type="submit">Submit</button>
-                </form>
-                
-                
-               </div>
-         </div>
-         <!-- end zakat -->
+        <!-- hajj course form -->
+      <div class="statistic-container">
+        <br><h1 class="text_align_center">KELANTAN E-MASJID MANAGEMENT SYSTEM</h1><br>
+        <h2 class="text_align_center">HAJJ COURSE APPLICATION STATUS</h2><br>
+        <div class="table-container">
+           <table class="fixed-table">
+              <table style="border-collapse: collapse; width: 100%; border: 1px solid #ddd;">
+                 <thead>
+                    <tr>
+                       <th style="border: 1px solid #ddd;">FULL NAME</th>
+                       <th style="border: 1px solid #ddd;">EMAIL</th>
+                       <th style="border: 1px solid #ddd;">PHONE NUMBER</th>
+                       <th style="border: 1px solid #ddd;">VENUE</th>
+                       <th style="border: 1px solid #ddd;">DATE</th>
+                       <th style="border: 1px solid #ddd;">STATUS</th>
+                    </tr>
+                 </thead>
+                 <tbody>
+                    <tr>
+                        <td style="text-align: left;">TUAN NUR AZLINA BINTI TUAN IBRAHIM</td>
+                        <td style="text-align: left;">tuannurazlina@gmail.com</td>
+                        <td style="text-align: left;">016-9351753</td>
+                        <td style="text-align: left;">MASJID MUHAMMADI KOTA BHARU</td>
+                        <td style="text-align: left;">31/01/2024</td>
+                        <td style="text-align: left;">ACCEPTED</td>
+                    </tr>
+                 </tbody>
+              </table>
+           </table>
+        </div>
+     </div>
+     <!-- end admin - hajj course form -->
          <!--  footer -->
          <footer>
             <div class="copyright">
@@ -202,5 +181,41 @@
          <script>
             AOS.init();
          </script>
+         <div id="successPopup" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+               <div class="modal-content">
+                  <div class="modal-header">
+                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                     <h4 class="modal-title">Success!</h4>
+                  </div>
+                  <div class="modal-body">
+                     <p>Your form has been submitted successfully.</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <script>
+            function validateForm() {
+                var fullName = document.getElementById("full_name").value;
+                var email = document.getElementById("email").value;
+                var phone = document.getElementById("phone").value;
+                var courseType = document.getElementById("course_type").value;
+    
+                if (fullName.trim() === "" || email.trim() === "" || phone.trim() === "" || courseType.trim() === "") {
+                    alert("Please fill in all required fields.");
+                    return false;
+                }
+    
+                return true;
+            }
+    
+            // Optional: You can reset the form on successful submission
+            $('#successPopup').on('hidden.bs.modal', function () {
+               document.getElementById("full_name").value = "";
+               document.getElementById("email").value = "";
+               document.getElementById("phone").value = "";
+               document.getElementById("course_type").value = "";
+            });
+        </script>
       </body>
 </html>
