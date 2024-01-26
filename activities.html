@@ -26,8 +26,17 @@
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+      <!-- Bootstrap JS -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
       <style> 
-      @media (max-width:100px) {
+      @media (max-width:60%) {
          .display-4 {
              font-size: 1.5rem;
          }
@@ -47,6 +56,30 @@
          }
      }
 
+          /* New styles for the calendar box */
+           .calendar-box {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 10px;
+            width: 60%;
+            margin-left: auto;
+            margin-right: auto;
+          }
+
+          /* New styles for side-by-side select elements */
+        .select-container {
+            display: flex;
+            justify-content: space-between;
+            width: 60%; /* Adjust width as needed */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .select-container select {
+            width: 70%; /* Adjust width as needed */
+            margin-right: 10px; /* Adjust spacing between selects as needed */
+        }
 
       </style>
 
@@ -116,35 +149,45 @@
 
       <!-- services -->
 
-      <div class="statistic-container">
          <br><h1 class="text_align_center">KELANTAN E-MASJID MANAGEMENT SYSTEM</h1>
+         <br>
          <h2 class="text_align_center">ACTIVITIES</h2>
+         <br>
           <!-- Detail of the activities -->
-          <div class="container">
-            <form action="" method="post">
-               <select id="course_type" name="course_type" required>
-                     <option value="basic">DISTRICT</option>
-                     <option value="advanced">KOTA BHARU</option>
-               </select>
-               <br><br>
-               <select id="course_type" name="course_type" required>
+          <div class="select-container">
+            <select id="district" name="district" required>
+                <option value="basic">DISTRICT</option>
+                <option value="advanced">KOTA BHARU</option>
+            </select>
+    
+            <select id="masjid" name="masjid" required>
                 <option value="basic">MASJID</option>
                 <option value="advanced">MASJID ...</option>
-               </select>
-               <br><br>
-               <select id="course_type" name="course_type" required>
+            </select>
+    
+            <select id="activity" name="activity" required>
                 <option value="basic">ACTIVITY</option>
                 <option value="advanced">Kelas Mengaji</option>
                 <option value="advanced">Khatam</option>
-               </select>
-            </form>
-          </div>
-      </div>
+            </select>
+        </div>
 
 
-            <!-- calendar--> <div class="container-fluid">
+
+        <!-- Month Navigation -->
+
+        <!-- calendar-->
+            <div class="calendar-box">
+            
+            <div class="container-fluid">
   <header>
-   <h4 class="display-4 mb-4 text-center">January 2024</h4>
+   <h4 class="display-4 mb-4 text-center">
+    <div class="paginator__month text-center">
+      <button onclick="changeMonth(-1)"><</button>
+      <span id="currentMonth">January 2024</span>
+      <button onclick="changeMonth(1)">></button>
+   </div>
+   </h4>
    <div class="row d-none d-sm-flex p-1 bg-dark text-white">
      <h5 class="col-sm p-1 text-center">Sunday</h5>
      <h5 class="col-sm p-1 text-center">Monday</h5>
@@ -202,7 +245,7 @@
        <small class="col d-sm-none text-center text-muted">Friday</small>
        <span class="col-1"></span>
      </h5>
-     <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-info text-white" title="Test Event 1">Test Event 1</a>
+     <a class="event d-block p-1 pl-2 pr-2 mb-1 rounded text-truncate small bg-info text-white" data-toggle="modal" data-target="#eventModal" data-title="Kelas Mengaji"> Kelas Mengaji</a>
    </div>
    <div class="day col-sm p-2 border border-left-0 border-top-0 text-truncate ">
      <h5 class="row align-items-center">
@@ -499,7 +542,9 @@
      <p class="d-sm-none">No events</p>
    </div>
  </div>
-</div> <!-- Calendar -->
+</div>
+</div>
+<!-- Calendar -->
 
       <!-- end services -->
       <!--  footer -->
@@ -524,10 +569,67 @@
       <script src="js/custom.js"></script>
       <script>
          AOS.init();
-      </script>
+               // Function to change the month
+               function changeMonth(offset) {
+            // Get the current month element
+            var currentMonthElement = document.getElementById("currentMonth");
+            
+            // Extract the current month and year
+            var currentMonth = currentMonthElement.innerText;
+            var [month, year] = currentMonth.split(" ");
 
-      <script>
-   
+            // Create a Date object for the current month
+            var currentDate = new Date(year, getMonthIndex(month));
+
+            // Add the offset to the month
+            currentDate.setMonth(currentDate.getMonth() + offset);
+
+            // Update the current month element
+            currentMonthElement.innerText = currentDate.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+         }
+
+         // Function to get the index of the month
+         function getMonthIndex(month) {
+            return new Date(month + " 1, 2000").getMonth();
+         }  
       </script>
+      <script>
+        $(document).ready(function() {
+          $('.event').click(function() {
+            var title = $(this).data('title');
+            $('#eventModalLabel').text(title);
+      
+            // Add event details here, you can modify this part based on your needs
+      
+            // Show the modal
+            $('#eventModal').modal('show');
+          });
+        });
+      </script>
+      
+      
+      <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="eventModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="eventModalLabel"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <!-- Event details will go here -->
+              Kelas Mengaji 
+              Masa : 10:30 AM - 12:00 AM <br>
+              Untuk pendaftaran hubungi Ustaz Mat : 0124647348
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
    </body>
 </html>
