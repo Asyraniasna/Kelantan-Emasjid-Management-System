@@ -8,7 +8,7 @@
          <meta name="viewport" content="width=device-width, initial-scale=1">
          <meta name="viewport" content="initial-scale=1, maximum-scale=1">
          <!-- site metas -->
-         <title>Kursus Nikah Form</title>
+         <title>Zakat Application Form</title>
          <style>
             body {
                 font-family: Arial, sans-serif;
@@ -126,63 +126,60 @@
             </div>
          </div>
          <!-- end header inner -->
-         <!-- nikah course -->
+         <!-- zakat -->
          <div class="statistic-container">
-            <br><h1 class="text_align_center">KELANTAN E-MASJID MANAGEMENT SYSTEM</h1>
-            <h2 class="text_align_center">Services</h2>
-            <div class="container">
-               <a href="services.html">Back</a>
-               <h2>Nikah Course Booking Form</h2>
-               <form action="process_hajj_course_booking.php" method="post">
-                  <label for="full_name">Full Name:</label>
-                  <input type="text" id="full_name" name="full_name" required>
-         
-                  <label for="gender">Gender:</label>
-                  <select id="gender" name="gender" required>
-                     <option value="male">Male</option>
-                     <option value="female">Female</option>
-                  </select>
-         
-                  <label for="ic">IC:</label>
-                  <input type="text" id="ic" name="ic" required>
-         
-                  <label for="address">Address:</label>
-                  <textarea id="address" name="address" rows="4" required></textarea>
-         
-                  <label for="phone">Phone Number:</label>
-                  <input type="tel" id="phone" name="phone" required>
-         
-                  <label for="date">Date:</label>
-                  <input type="date" id="date" name="date" required>
-         
-                  <label for="venue">Venue:</label>
-                  <select id="venue" name="venue" required>
-                     <option value="masjid1">MASJID MUHAMMADI KOTA BHARU</option>
-                     <option value="masjid2">MASJID D'RAJA LONG YUNUS</option>
-                     <option value="masjid3">MASJID BANDAR SULTAN MUHAMMAD III</option>
-                     <option value="masjid4">MASJID JUBLI PERAK SULTAN ISMAIL PETRA</option>
-                     <option value="masjid5">MASJID ISMAIL PETRA</option>
-                     <option value="masjid6">MASJID MUKIM BATANG MERBAU</option>
-                     <option value="masjid7">MASJID IBRAHIMI</option>
-                     <option value="masjid8">MASJID MUKIM PADANG PAK AMAT</option>
-                     <option value="masjid9">MASJID BANDAR TENGKU MUHAMMAD FARIS PETRA</option>
-                     <option value="masjid10">MASJID ANNUR GUCHIL</option>
-                     <option value="masjid11">MASJID TENGKU MUHAMMAD FA-IZ PETRA</option>
-                     <option value="masjid12">MASJID RAZALEIGH</option>
-                     <option value="masjid13">MASJID SULTAN MUHAMMAD I</option>
-                     <option value="masjid14">MASJID AL-ABRAR AYER LANAS</option>
-                     <option value="masjid15">MASJID SULTAN YAHYA PETRA</option>
-                     <option value="masjid16">MASJID AR RAHMAN MUKIM GALANG PULAI CHONDONG</option>
-                     <option value="masjid17">MASJID MAHMOODI</option>
-                     <option value="masjid18">MASJID AR-RAHMANI MUKIM REPEK</option>
-                     <option value="masjid19">MASJID ISMAILI</option>
-                     <option value="masjid20">MASJID MUKIM WAKAF BHARU</option>
-                  </select>
-                  <button type="submit">Submit</button>
-               </form>
-            </div>
-         </div>         
-         <!-- end nikah course -->
+               <br><h1 class="text_align_center">KELANTAN E-MASJID MANAGEMENT SYSTEM</h1>
+               <h2 class="text_align_center">Services</h2>
+               <div class="container">
+                  <a href="services.html">Back</a>
+                  <h2>Zakat Application Form</h2>
+                  <form action="process_zakat_application.php" method="post">               
+                    <label for="full_name">Full Name:</label>
+                    <input type="text" id="full_name" name="full_name" required>
+                
+                    <label for="ic">IC:</label>
+                    <input type="text" id="ic" name="ic" required>
+                
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" rows="4"></textarea>
+                
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="income">Income (RM):</label>
+                    <input type="income" id="income" name="income" required>
+
+                    <label for="bank">Select Bank:</label>
+                    <select id="bank" name="bank" required>
+                        <option value="alliance_bank">Alliance Bank Malaysia Berhad</option>
+                        <option value="ambank">AmBank</option>
+                        <option value="bank_islam">Bank Islam Malaysia</option>
+                        <option value="bank_rakyat">Bank Rakyat</option>
+                        <option value="bsn">Bank Simpanan Nasional (BSN)</option>
+                        <option value="cimb">CIMB Group Holdings</option>
+                        <option value="hsbc">HSBC Bank Malaysia</option>
+                        <option value="hong_leong">Hong Leong Bank</option>
+                        <option value="maybank">Maybank</option>
+                        <option value="public_bank">Public Bank Berhad</option>
+                        <option value="rhb">RHB Bank</option>
+                    </select>
+
+                    <label for="accountnum">Account Number:</label>
+                    <input type="accountnum" id="accountnum" name="accountnum" required>
+                
+                    <label for="additional_notes">Additional Notes:</label>
+                    <textarea id="additional_notes" name="additional_notes" rows="4"></textarea>
+                
+                    <button type="submit">Submit</button>
+                </form>
+                
+                
+               </div>
+         </div>
+         <!-- end zakat -->
          <!--  footer -->
          <footer>
             <div class="copyright">
